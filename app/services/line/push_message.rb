@@ -24,6 +24,8 @@ module Line
         "messages": build_messages(@messages)
       }.to_json
 
+      p "=========Validate this========"
+      p payload
       # POST request
       response = RestClient.post(endpoint, payload, headers)
 
@@ -33,7 +35,7 @@ module Line
     private
 
     def build_messages(messages)
-      messages.map do |message|
+      messages.map! do |message|
         {
           "type": 'text',
           "text": message

@@ -15,10 +15,15 @@ class LineController < ApplicationController
     p body
     body = JSON.parse(body)
     user_id = body["events"][0]["source"]["userId"]
+    Line::PushMessage.call(user_id, ["One sec..."])
     user_request = body['events'][0]['message']['text']
-    messages = ['your message is: ', user_request]
-    Line::PushMessage.call(user_id, messages)
 
+    fireworks_message = Fireworks::Chat.call(user_request)
+
+    # messages = ['your message is: ', user_request, 'fireworks message is:', fireworks_message]
+    # messages = ['your message is: ', user_request,]
+    # p messages
+    Line::PushCarousel.call(user_id, fireworks_message)
     render json: { status: 'ok' }, Status: :ok
   end
 end
