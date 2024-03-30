@@ -13,7 +13,9 @@ class LineController < ApplicationController
     p "i am in the method"
     body = request.body.read
     p body
-    user_id = ENV['DC_LINE_ID']
+    body = JSON.parse(body)
+    # user_id = ENV['DC_LINE_ID']
+    user_id = body["events"][0]["source"]["userId"]
     messages = ['hello', 'world']
 
     Line::PushMessage.call(user_id, messages)
