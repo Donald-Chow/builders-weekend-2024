@@ -56,16 +56,16 @@ module Line
             "type": "box",
             "layout": "vertical",
             "contents": [
-                {
-                    "type": "button",
-                    "action": {
-                        "type": "uri",
-                        "label": "Tap me",
-                        "uri": "https://example.com"
-                    },
-                    "style": "primary",
-                    "color": "#0000ff"
-                }
+              {
+                "type": "button",
+                "action": {
+                    "type": "uri",
+                    "label": message['room_title'],
+                    "uri": "https://leisure-space.vercel.app/"
+                },
+                "style": "primary",
+                "color": "#0000ff"
+              }
             ]
           }
         }
