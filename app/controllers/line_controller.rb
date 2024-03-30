@@ -14,10 +14,9 @@ class LineController < ApplicationController
     body = request.body.read
     p body
     body = JSON.parse(body)
-    # user_id = ENV['DC_LINE_ID']
     user_id = body["events"][0]["source"]["userId"]
-    messages = ['hello', 'world']
-
+    user_request = body['events'][0]['message']['text']
+    messages = ['your message is: ', user_request]
     Line::PushMessage.call(user_id, messages)
 
     render json: { status: 'ok' }, Status: :ok
